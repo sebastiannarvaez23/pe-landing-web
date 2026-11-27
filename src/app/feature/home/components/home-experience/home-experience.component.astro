@@ -1,0 +1,248 @@
+---
+import './styles/home-experience.component.web.css';
+import './styles/home-experience.component.mobile.css';
+import { MESSAGES } from '../../../../core/i18n/messages';
+import { withBase } from '../../../../core/utils/public-url.util';
+
+const copy = MESSAGES.es;
+
+const jobs = [
+  { id: 'codesa', n: '1', active: true, href: 'https://www.codesa.com.co/codesa/inicio', acts: ['1', '2', '3'], wins: ['1', '2', '3'] },
+  { id: 'coomeva', n: '2', active: true, href: 'https://www.grupocoomeva.com/', acts: ['1', '2', '3'], wins: ['1', '2'] },
+  { id: 'johanna-ortiz', n: '3', active: true, href: 'https://www.johannaortiz.com/', acts: ['1', '2', '3'], wins: ['1', '2', '3'] },
+] as const;
+
+const visibleJobs = jobs.filter((job) => job.active);
+const firstJobId = visibleJobs[0]?.id;
+
+const logos: Record<string, { dark: string; light: string; width: number; height: number }> = {
+  codesa: { dark: '/assets/logo-codesa-dark.png', light: '/assets/logo-codesa-light.png', width: 266, height: 259 },
+  coomeva: { dark: '/assets/logo-coomeva-dark.png', light: '/assets/logo-coomeva-light.png', width: 428, height: 249 },
+  'johanna-ortiz': { dark: '/assets/logo-johanna-ortiz-dark.png', light: '/assets/logo-johanna-ortiz-light.png', width: 837, height: 298 },
+};
+---
+
+<section
+  class="pe-screen home-experience"
+  id="experiencia"
+  data-pe-section
+  data-pe-side="start"
+  data-pe-shape="ascent"
+  aria-labelledby="experience-title"
+>
+  <div class="pe-screen__grid">
+    <div class="pe-screen__copy home-experience__copy">
+      <p class="home-experience__kicker" data-i18n="experience.kicker">{copy['experience.kicker']}</p>
+      <h2 id="experience-title" data-i18n="experience.line1">{copy['experience.line1']}</h2>
+      <div
+        class="home-experience__carousel"
+        data-pe-experience
+        data-i18n-aria="experience.carousel"
+        aria-label={copy['experience.carousel']}
+        aria-roledescription="carrusel"
+      >
+        <div class="home-experience__viewport">
+          {
+            jobs.map((job) => (
+              <article
+                class:list={['home-experience__slide', { 'is-active': job.id === firstJobId }]}
+                data-pe-slide
+                data-pe-active={job.active ? 'true' : 'false'}
+                aria-hidden={job.id === firstJobId ? 'false' : 'true'}
+                hidden={!job.active}
+              >
+                <header class="home-experience__identity">
+                  <a
+                    class="home-experience__logo"
+                    href={job.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabindex="-1"
+                    aria-hidden="true"
+                    data-pe-logo={job.id}
+                  >
+                    {logos[job.id] && (
+                      <>
+                        <img
+                          class="home-experience__mark home-experience__mark--dark"
+                          src={withBase(logos[job.id].dark)}
+                          width={logos[job.id].width}
+                          height={logos[job.id].height}
+                          alt=""
+                        />
+                        <img
+                          class="home-experience__mark home-experience__mark--light"
+                          src={withBase(logos[job.id].light)}
+                          width={logos[job.id].width}
+                          height={logos[job.id].height}
+                          alt=""
+                        />
+                      </>
+                    )}
+                  </a>
+                  <div class="home-experience__heading">
+                    <h3>
+                      <a
+                        class="home-experience__company"
+                        href={job.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        data-i18n={`experience.job${job.n}.company`}
+                        data-i18n-aria={`experience.job${job.n}.site`}
+                        aria-label={copy[`experience.job${job.n}.site`]}
+                      >
+                        {copy[`experience.job${job.n}.company`]}
+                      </a>
+                    </h3>
+                    <p class="home-experience__role" data-i18n={`experience.job${job.n}.role`}>
+                      {copy[`experience.job${job.n}.role`]}
+                    </p>
+                    <p class="home-experience__dates" data-i18n={`experience.job${job.n}.dates`}>
+                      {copy[`experience.job${job.n}.dates`]}
+                    </p>
+                  </div>
+                </header>
+                <div class="home-experience__detail">
+                  <p class="home-experience__text" data-i18n={`experience.job${job.n}.lead`}>
+                    {copy[`experience.job${job.n}.lead`]}
+                  </p>
+                  <p class="home-experience__label" data-i18n="experience.activities">
+                    {copy['experience.activities']}
+                  </p>
+                  <ul class="home-experience__acts">
+                    {job.acts.map((act) => (
+                      <li data-i18n={`experience.job${job.n}.act${act}`}>{copy[`experience.job${job.n}.act${act}`]}</li>
+                    ))}
+                  </ul>
+                  <p class="home-experience__label" data-i18n="experience.achievements">
+                    {copy['experience.achievements']}
+                  </p>
+                  <ul class="home-experience__wins">
+                    {job.wins.map((win) => (
+                      <li>
+                        <svg class="home-experience__medal" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M5 2.5h4.2L12 12.5 7.6 12.5 5 2.5Z" fill="currentColor"></path>
+                          <path d="M19 2.5h-4.2L12 12.5h4.4L19 2.5Z" fill="currentColor"></path>
+                          <circle cx="12" cy="15.2" r="6.4" fill="currentColor" opacity="0.18" stroke="currentColor" stroke-width="1.5"></circle>
+                          <path d="m12 12.1 1.05 2.15 2.35.3-1.75 1.6.45 2.3L12 17.3l-2.1 1.15.45-2.3-1.75-1.6 2.35-.3L12 12.1Z" fill="currentColor"></path>
+                        </svg>
+                        <span data-i18n={`experience.job${job.n}.win${win}`}>{copy[`experience.job${job.n}.win${win}`]}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+        <div class="home-experience__pager">
+          <button
+            class="home-experience__nav"
+            type="button"
+            data-pe-prev
+            data-i18n-aria="experience.prev"
+            aria-label={copy['experience.prev']}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 6 8 12l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <div class="home-experience__pages">
+            {
+              visibleJobs.map((job, index) => (
+                <button
+                  class="home-experience__page"
+                  type="button"
+                  data-pe-page
+                  data-i18n-aria={`experience.job${job.n}.company`}
+                  aria-label={copy[`experience.job${job.n}.company`]}
+                  aria-current={index === 0 ? 'true' : 'false'}
+                >
+                  {index + 1}
+                </button>
+              ))
+            }
+          </div>
+          <button
+            class="home-experience__nav"
+            type="button"
+            data-pe-next
+            data-i18n-aria="experience.next"
+            aria-label={copy['experience.next']}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m10 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="pe-screen__anchor" data-pe-anchor aria-hidden="true"></div>
+  </div>
+</section>
+
+<script>
+  import { createSlidePlayer } from '../../carousel-slide';
+
+  const root = document.querySelector<HTMLElement>('[data-pe-experience]');
+  if (root) {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-pe-slide]')].filter(
+      (slide) => slide.dataset.peActive !== 'false',
+    );
+    const pages = [...root.querySelectorAll<HTMLButtonElement>('[data-pe-page]')];
+    const prev = root.querySelector<HTMLButtonElement>('[data-pe-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-pe-next]');
+    let index = 0;
+    const player = createSlidePlayer();
+
+    const show = (nextIndex: number) => {
+      const outgoing = slides[index];
+      const incoming = slides[nextIndex];
+      const dir = nextIndex === index ? 0 : nextIndex > index ? 1 : -1;
+      index = nextIndex;
+      slides.forEach((slide, i) => {
+        const on = i === index;
+        slide.classList.toggle('is-active', on);
+        slide.removeAttribute('hidden');
+        slide.setAttribute('aria-hidden', on ? 'false' : 'true');
+      });
+      pages.forEach((page, i) => {
+        page.setAttribute('aria-current', i === index ? 'true' : 'false');
+      });
+      if (prev) prev.disabled = index === 0;
+      if (next) next.disabled = index === slides.length - 1;
+      if (dir !== 0 && outgoing && incoming) player.play(slides, outgoing, incoming, dir);
+    };
+
+    prev?.addEventListener('click', () => {
+      if (index > 0) show(index - 1);
+    });
+    next?.addEventListener('click', () => {
+      if (index < slides.length - 1) show(index + 1);
+    });
+    pages.forEach((page, i) => {
+      page.addEventListener('click', () => show(i));
+    });
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') next?.click();
+      if (event.key === 'ArrowLeft') prev?.click();
+    });
+
+    let swipeX = 0;
+    let swipeY = 0;
+    root.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse') return;
+      swipeX = event.clientX;
+      swipeY = event.clientY;
+    });
+    root.addEventListener('pointerup', (event) => {
+      if (event.pointerType === 'mouse') return;
+      const dx = event.clientX - swipeX;
+      const dy = event.clientY - swipeY;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+      if (dx < 0) next?.click();
+      else prev?.click();
+    });
+    show(0);
+  }
+</script>

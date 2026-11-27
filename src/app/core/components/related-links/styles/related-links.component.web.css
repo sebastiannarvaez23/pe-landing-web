@@ -1,0 +1,31 @@
+.related-links {
+  margin-top: var(--space-8);
+}
+
+.related-links h2 {
+  font-size: 1.25rem;
+}
+
+.related-links ul {
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.related-links a {
+  display: grid;
+  gap: 4px;
+  padding: var(--space-4);
+  border: 1px solid var(--pe-line);
+  border-radius: var(--pe-radius);
+  text-decoration: none;
+  background: var(--pe-bg-muted);
+}
+
+.related-links span {
+  color: var(--pe-text-muted);
+  font-size: 0.95rem;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "pe-landing-web",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Sitio corporativo. Estructura Astro alineada con ne-landing-web.",
+  "private": true,
+  "scripts": {
+    "astro": "astro",
+    "start": "astro dev --host 0.0.0.0 --port 4010",
+    "build": "astro check && astro build",
+    "watch": "astro dev --host 0.0.0.0 --port 4010",
+    "preview": "astro preview --host 0.0.0.0 --port 4010",
+    "test": "astro check && tsx --test src/app/app-routing.spec.ts src/app/core/utils/inquiry-validation.util.spec.ts src/app/core/services/inquiry.service.spec.ts",
+    "clean": "rm -rf dist .astro node_modules/.vite"
+  },
+  "dependencies": {
+    "astro": "^5.6.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "tsx": "^4.20.3",
+    "typescript": "^5.7.3"
+  }
+}

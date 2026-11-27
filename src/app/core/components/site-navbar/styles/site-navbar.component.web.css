@@ -1,0 +1,133 @@
+.site-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: var(--pe-nav-h);
+  background: var(--pe-nav-bg);
+  border-bottom: 1px solid var(--pe-nav-border);
+  color: var(--pe-nav-text);
+  backdrop-filter: blur(16px);
+}
+
+.site-navbar--overlay {
+  position: absolute;
+  inset: 0 0 auto 0;
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+}
+
+.site-navbar__bar {
+  position: relative;
+  height: var(--pe-nav-h);
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.section-toolbar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
+.section-toolbar a {
+  padding: 6px 10px;
+  color: var(--pe-accent-strong);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow:
+    0 0 6px var(--pe-ref-cyan-hot),
+    0 0 16px var(--pe-ref-cyan);
+}
+
+.section-toolbar a[aria-current='page'] {
+  text-shadow:
+    0 0 8px #fff,
+    0 0 14px var(--pe-ref-cyan-hot),
+    0 0 28px var(--pe-ref-cyan);
+}
+
+.section-toolbar a:hover {
+  text-shadow:
+    0 0 8px #fff,
+    0 0 18px var(--pe-ref-cyan-hot),
+    0 0 34px var(--pe-ref-cyan);
+}
+
+.site-navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  color: var(--pe-nav-text);
+  text-decoration: none;
+}
+
+.site-navbar__tools {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.lang-switch button,
+.theme-switch {
+  border: 0;
+  background: transparent;
+  color: var(--pe-nav-text-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.lang-switch button {
+  min-width: 36px;
+  height: 32px;
+  padding: 0 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.lang-switch button[aria-pressed='true'] {
+  color: var(--pe-accent);
+}
+
+.theme-switch {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pe-nav-text);
+}
+
+.theme-switch svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-menu,
+.site-menu {
+  display: none;
+}
+
+[data-theme='dark'] .theme-switch__moon,
+[data-theme='light'] .theme-switch__sun {
+  display: none;
+}

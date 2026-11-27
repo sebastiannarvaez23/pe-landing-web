@@ -1,0 +1,28 @@
+---
+import type { PageSection } from '../../interfaces/site.interfaces';
+
+interface Props {
+  sections: readonly PageSection[];
+}
+
+const { sections } = Astro.props;
+---
+
+{
+  sections.map((section) => (
+    <section>
+      <h2>{section.title}</h2>
+      {section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
+      {section.blocks && section.blocks.length > 0 && (
+        <ul class="block-list">
+          {section.blocks.map((block) => (
+            <li>
+              <h3>{block.title}</h3>
+              <p>{block.text}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  ))
+}

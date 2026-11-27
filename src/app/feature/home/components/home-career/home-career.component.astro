@@ -1,0 +1,53 @@
+---
+import './styles/home-career.component.web.css';
+import './styles/home-career.component.mobile.css';
+import { MESSAGES } from '../../../../core/i18n/messages';
+
+const copy = MESSAGES.es;
+
+const stances = ['1', '2', '3'] as const;
+const forms = ['1', '2', '3', '4', '5', '6', '7', '8', '9'] as const;
+---
+
+<section
+  class="pe-screen home-career"
+  id="carrera"
+  data-pe-section
+  data-pe-side="start"
+  data-pe-shape="compass"
+  aria-labelledby="career-title"
+>
+  <div class="pe-screen__grid">
+    <div class="pe-screen__copy home-career__copy">
+      <p class="home-career__kicker" data-i18n="career.kicker">{copy['career.kicker']}</p>
+      <h2 id="career-title" data-i18n="career.line1">{copy['career.line1']}</h2>
+      <p class="home-career__lead" data-i18n="career.lead">{copy['career.lead']}</p>
+      <ul class="home-career__stances">
+        {
+          stances.map((stance) => (
+            <li>
+              <p class="home-career__name" data-i18n={`career.stance${stance}`}>
+                {copy[`career.stance${stance}`]}
+              </p>
+              <p data-i18n={`career.stance${stance}.text`}>{copy[`career.stance${stance}.text`]}</p>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="home-career__label" data-i18n="career.forms">{copy['career.forms']}</p>
+      <ul class="home-career__forms">
+        {
+          forms.map((form) => (
+            <li>
+              <p class="home-career__name" data-i18n={`career.form${form}`}>
+                {copy[`career.form${form}`]}
+              </p>
+              <p data-i18n={`career.form${form}.text`}>{copy[`career.form${form}.text`]}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="pe-screen__anchor" data-pe-anchor aria-hidden="true"></div>
+  </div>
+</section>

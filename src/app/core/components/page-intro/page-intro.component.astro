@@ -1,0 +1,22 @@
+---
+import type { Crumb } from '../../interfaces/site.interfaces';
+import SiteBreadcrumbs from '../site-breadcrumbs/site-breadcrumbs.component.astro';
+
+interface Props {
+  title: string;
+  lead: string;
+  crumbs?: readonly Crumb[];
+  kicker?: string;
+}
+
+const { title, lead, crumbs = [], kicker } = Astro.props;
+---
+
+<header class="page-intro">
+  <div class="pe-container">
+    <SiteBreadcrumbs crumbs={crumbs} />
+    {kicker && <p class="pe-kicker">{kicker}</p>}
+    <h1>{title}</h1>
+    <p class="pe-lead page-intro__lead">{lead}</p>
+  </div>
+</header>

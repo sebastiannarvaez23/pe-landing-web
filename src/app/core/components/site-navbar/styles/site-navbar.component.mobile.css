@@ -1,0 +1,112 @@
+@media (max-width: 767.98px),
+  (min-width: 768px) and (max-width: 1023.98px) and (orientation: portrait),
+  (max-width: 1023.98px) and (orientation: landscape) and (max-height: 500px) {
+  .site-navbar {
+    height: auto;
+  }
+
+  .site-navbar__bar {
+    gap: var(--space-3);
+    height: 64px;
+  }
+
+  .section-toolbar {
+    display: none;
+  }
+
+  .brand-mark__name {
+    font-size: 0.82rem;
+  }
+
+  .theme-switch {
+    display: none;
+  }
+
+  .lang-switch {
+    gap: 0;
+  }
+
+  .lang-switch button {
+    min-width: 34px;
+    padding: 0 8px;
+  }
+
+  .lang-switch button + button {
+    box-shadow: inset 1px 0 0 color-mix(in srgb, var(--pe-text) 28%, transparent);
+  }
+
+  .nav-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 32px;
+    margin-left: 2px;
+    border: 0;
+    background: transparent;
+    color: var(--pe-nav-text);
+    box-shadow: inset 1px 0 0 color-mix(in srgb, var(--pe-text) 28%, transparent);
+    cursor: pointer;
+  }
+
+  .nav-menu svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-menu__close,
+  .nav-menu[aria-expanded='true'] .nav-menu__open {
+    display: none;
+  }
+
+  .nav-menu[aria-expanded='true'] .nav-menu__close {
+    display: block;
+  }
+
+  .site-menu {
+    position: absolute;
+    top: calc(100% - 8px);
+    right: var(--pe-gutter);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    padding: 6px;
+    border: 1px solid var(--pe-line);
+    border-radius: 12px;
+    background: var(--pe-bg-elevated);
+    box-shadow: var(--pe-shadow);
+  }
+
+  .site-menu[hidden] {
+    display: none;
+  }
+
+  .site-menu a,
+  .site-menu__theme {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--pe-text);
+    font: inherit;
+    font-size: 0.92rem;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .site-menu a:hover,
+  .site-menu__theme:hover {
+    background: color-mix(in srgb, var(--pe-accent) 10%, transparent);
+  }
+
+  [data-theme='dark'] .site-menu__theme-to-dark,
+  [data-theme='light'] .site-menu__theme-to-light {
+    display: none;
+  }
+}

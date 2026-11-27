@@ -1,0 +1,3 @@
+#productos p:last-child {
+  margin-top: var(--space-4);
+}

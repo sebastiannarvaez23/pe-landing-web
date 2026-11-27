@@ -1,0 +1,31 @@
+---
+import type { RelatedLink } from '../../interfaces/site.interfaces';
+import { withBase } from '../../utils/public-url.util';
+import './styles/related-links.component.web.css';
+import './styles/related-links.component.mobile.css';
+
+interface Props {
+  title?: string;
+  links: readonly RelatedLink[];
+}
+
+const { title = 'También puede interesarte', links } = Astro.props;
+---
+
+{
+  links.length > 0 && (
+    <aside class="related-links" aria-label={title}>
+      <h2>{title}</h2>
+      <ul>
+        {links.map((link) => (
+          <li>
+            <a href={withBase(link.href)}>
+              <strong>{link.label}</strong>
+              <span>{link.text}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  )
+}

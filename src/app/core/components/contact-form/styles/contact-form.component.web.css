@@ -1,0 +1,93 @@
+.contact-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.contact-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4) var(--space-5);
+}
+
+.contact-form__field {
+  display: grid;
+  gap: 6px;
+}
+
+.contact-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.contact-form label {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.contact-form label span {
+  color: var(--pe-text-faint);
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--pe-line-strong);
+  border-radius: var(--pe-radius);
+  background: var(--pe-bg-elevated);
+  padding: 10px 12px;
+  min-height: 44px;
+}
+
+.contact-form textarea {
+  min-height: 148px;
+  resize: vertical;
+}
+
+.contact-form select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--pe-text) 50%),
+    linear-gradient(135deg, var(--pe-text) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 19px,
+    calc(100% - 12px) 19px;
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 36px;
+}
+
+.contact-form__error,
+.contact-form__status {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.contact-form__error,
+.contact-form__status--alert {
+  color: var(--pe-danger);
+}
+
+.contact-form__status:not(.contact-form__status--alert) {
+  color: var(--pe-ok);
+}
+
+.contact-form__note {
+  margin: 0;
+  color: var(--pe-text-muted);
+  font-size: 0.92rem;
+}
+
+.contact-form__note a {
+  color: var(--pe-accent);
+}
+
+.contact-form__honey {
+  position: absolute;
+  left: -9999px;
+}
+
+.contact-form [aria-invalid='true'] {
+  border-color: var(--pe-danger);
+}

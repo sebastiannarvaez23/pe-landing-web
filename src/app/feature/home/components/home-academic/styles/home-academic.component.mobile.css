@@ -1,0 +1,97 @@
+@media (max-width: 767.98px),
+  (min-width: 768px) and (max-width: 1023.98px) and (orientation: portrait),
+  (max-width: 1023.98px) and (orientation: landscape) and (max-height: 500px) {
+  .home-academic.pe-screen {
+    height: auto;
+    min-height: 0;
+  }
+
+  .home-academic .pe-screen__grid {
+    display: block;
+    left: auto;
+    flex: none;
+    width: min(var(--pe-container), calc(100% - (var(--pe-gutter) * 2)));
+    max-width: none;
+    height: auto;
+    padding-bottom: calc(28px + 40vw);
+  }
+
+  .home-academic .pe-screen__anchor {
+    position: absolute;
+    left: 50%;
+    bottom: calc(10px + 16vw);
+    width: 0;
+    height: 0;
+  }
+
+  .home-academic__copy {
+    z-index: 4;
+    width: 100%;
+  }
+
+  .home-academic h2 {
+    font-size: clamp(1.45rem, 6.4vw, 1.8rem);
+  }
+
+  .home-academic__carousel {
+    margin-top: 22px;
+    touch-action: pan-y;
+  }
+
+  .home-academic__degree {
+    min-height: 0;
+  }
+
+  .home-academic__logo {
+    height: 40px;
+    margin-top: 10px;
+  }
+
+  .home-academic__logo img[src$='logo-usc.png'] {
+    width: 36px;
+    height: 36px;
+  }
+
+  .home-academic__logo-icesi {
+    height: 30px;
+  }
+
+  .home-academic h3 {
+    margin-top: 10px;
+    font-size: 0.92rem;
+  }
+
+  .home-academic__school {
+    font-size: 0.72rem;
+  }
+
+  .home-academic__text {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .home-academic__skills {
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .home-academic__skills li {
+    padding-left: 14px;
+    font-size: 0.72rem;
+  }
+
+  .home-academic__pager {
+    margin-top: 18px;
+  }
+
+  .home-academic__nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .home-academic__page {
+    width: 36px;
+    height: 36px;
+  }
+}

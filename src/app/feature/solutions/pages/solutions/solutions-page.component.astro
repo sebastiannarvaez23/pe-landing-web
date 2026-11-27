@@ -1,0 +1,45 @@
+---
+import { findRoute, visibleCrumbs } from '../../../../app-routing';
+import PageIntro from '../../../../core/components/page-intro/page-intro.component.astro';
+import SiteLayout from '../../../../core/components/site-layout/site-layout.component.astro';
+import { pageGraph } from '../../../../core/utils/page-meta.util';
+import { itemListNode } from '../../../../core/utils/structured-data.util';
+import { SOLUTIONS } from '../../data/solutions.data';
+
+const route = findRoute('/soluciones');
+const jsonLd = [
+  pageGraph(
+    route.path,
+    SOLUTIONS.length > 0
+      ? [itemListNode('Soluciones', SOLUTIONS.map((item) => ({ name: item.crumb, path: item.path })))]
+      : [],
+  ),
+];
+---
+
+<SiteLayout title={route.title} description={route.description} path={route.path} jsonLd={jsonLd}>
+  <PageIntro
+    title="Soluciones"
+    lead="Iniciativas en las que la tecnología abre una oportunidad concreta. Esta sección se publica cuando haya trabajo listo para mostrar."
+    crumbs={visibleCrumbs(route.path)}
+    kicker="Soluciones"
+  />
+  <div class="pe-container editorial">
+    {
+      SOLUTIONS.length === 0 ? (
+        <p>Todavía no hay iniciativas publicadas.</p>
+      ) : (
+        <ul class="block-list">
+          {SOLUTIONS.map((solution) => (
+            <li>
+              <h2>
+                <a href={solution.path}>{solution.crumb}</a>
+              </h2>
+              <p>{solution.lead}</p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</SiteLayout>

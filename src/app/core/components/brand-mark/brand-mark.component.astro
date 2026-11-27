@@ -1,0 +1,33 @@
+---
+import { SITE_NAME, SITE_ROLE } from '../../constants/site.constant';
+import './styles/brand-mark.component.web.css';
+
+interface Props {
+  variant?: 'horizontal' | 'stacked' | 'mark';
+  tone?: 'on-dark' | 'on-light';
+}
+
+const { variant = 'horizontal', tone } = Astro.props;
+---
+
+<span class:list={['brand-mark', `brand-mark--${variant}`, tone && `brand-mark--${tone}`]}>
+  <svg class="brand-mark__icon" viewBox="0 0 32 32" aria-hidden="true">
+    <path
+      d="M16 3.5 27 14.2 16 28.5 5 14.2 16 3.5Z"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.2"
+      stroke-linejoin="round"></path>
+    <path d="M16 10.2 21.2 15.4 16 22.8 10.8 15.4 16 10.2Z" fill="currentColor"></path>
+  </svg>
+  {
+    variant !== 'mark' && (
+      <span class="brand-mark__text">
+        <span class="brand-mark__name">{SITE_NAME}</span>
+        <span class="brand-mark__role" data-i18n="brand.role">
+          {SITE_ROLE}
+        </span>
+      </span>
+    )
+  }
+</span>

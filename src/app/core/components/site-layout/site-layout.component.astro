@@ -1,0 +1,186 @@
+---
+import '../../../../styles/styles.web.css';
+import '../../../../styles/styles.tablet.css';
+import '../../../../styles/styles.mobile.css';
+
+import { MESSAGES } from '../../i18n/messages';
+import { SITE_NAME } from '../../constants/site.constant';
+import { withBase } from '../../utils/public-url.util';
+import { absoluteUrl, serializeJsonLd, type JsonLdNode } from '../../utils/structured-data.util';
+import SiteFooter from '../site-footer/site-footer.component.astro';
+import SiteNavbar from '../site-navbar/site-navbar.component.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  robots?: string;
+  jsonLd?: readonly JsonLdNode[];
+}
+
+const { title, description, path, robots = 'index, follow', jsonLd = [] } = Astro.props;
+const documentTitle = title.startsWith(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+const canonical = absoluteUrl(path);
+---
+
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{documentTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#000116" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <script id="pe-i18n" type="application/json" set:html={JSON.stringify(MESSAGES)} />
+    <script is:inline>
+      (function () {
+        try {
+          var theme = localStorage.getItem('pe-theme');
+          var lang = localStorage.getItem('pe-lang');
+          if (theme === 'light' || theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', theme);
+          }
+          if (lang === 'en' || lang === 'es') {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.lang = lang;
+          }
+        } catch (error) {
+          /* almacenamiento no disponible */
+        }
+      })();
+    </script>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={documentTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={documentTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    {
+      jsonLd.map((node) => (
+        <script is:inline type="application/ld+json" set:html={serializeJsonLd(node)} />
+      ))
+    }
+  </head>
+  <body>
+    <a class="pe-skip-link" href="#contenido">Saltar al contenido</a>
+    <SiteNavbar path={path} overlay={path === '/'} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <SiteFooter />
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var node = document.getElementById('pe-i18n');
+        if (!node || !node.textContent) return;
+        var store = JSON.parse(node.textContent);
+
+        function copy() {
+          var lang = root.dataset.lang === 'en' ? 'en' : 'es';
+          return store[lang];
+        }
+
+        function apply() {
+          var lang = root.dataset.lang === 'en' ? 'en' : 'es';
+          var theme = root.dataset.theme === 'light' ? 'light' : 'dark';
+          var text = copy();
+          root.lang = lang;
+          root.dataset.lang = lang;
+          root.dataset.theme = theme;
+          document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n');
+            if (key && text[key]) el.textContent = text[key];
+          });
+          document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n-alt');
+            if (key && text[key]) el.alt = text[key];
+          });
+          document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n-aria');
+            if (key && text[key]) el.setAttribute('aria-label', text[key]);
+          });
+          if (text['meta.title']) document.title = text['meta.title'];
+          document.querySelectorAll('[data-lang-set]').forEach(function (btn) {
+            btn.setAttribute('aria-pressed', btn.getAttribute('data-lang-set') === lang ? 'true' : 'false');
+          });
+          document.querySelectorAll('[data-theme-toggle]').forEach(function (toggle) {
+            toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+            toggle.setAttribute('aria-label', theme === 'dark' ? text['nav.themeToLight'] : text['nav.themeToDark']);
+          });
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#f4f8fb' : '#000116');
+        }
+
+        apply();
+
+        document.addEventListener('click', function (event) {
+          var target = event.target;
+          if (!(target instanceof Element)) return;
+          var langBtn = target.closest('[data-lang-set]');
+          if (langBtn) {
+            var nextLang = langBtn.getAttribute('data-lang-set') === 'en' ? 'en' : 'es';
+            root.dataset.lang = nextLang;
+            try {
+              localStorage.setItem('pe-lang', nextLang);
+            } catch (error) {
+              /* almacenamiento no disponible */
+            }
+            apply();
+            return;
+          }
+          var menuBtn = target.closest('[data-nav-toggle]');
+          if (menuBtn) {
+            var menu = document.getElementById('site-menu');
+            if (!menu) return;
+            var willOpen = menu.hasAttribute('hidden');
+            menu.toggleAttribute('hidden', !willOpen);
+            menuBtn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+            return;
+          }
+          if (target.closest('#site-menu a')) {
+            var openMenu = document.getElementById('site-menu');
+            var openBtn = document.querySelector('[data-nav-toggle]');
+            if (openMenu) openMenu.setAttribute('hidden', '');
+            if (openBtn) openBtn.setAttribute('aria-expanded', 'false');
+          }
+          if (target.closest('[data-theme-toggle]')) {
+            var nextTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
+            root.dataset.theme = nextTheme;
+            try {
+              localStorage.setItem('pe-theme', nextTheme);
+            } catch (error) {
+              /* almacenamiento no disponible */
+            }
+            apply();
+          }
+        });
+
+        document.addEventListener('keydown', function (event) {
+          if (event.key !== 'Escape') return;
+          var menu = document.getElementById('site-menu');
+          var menuButton = document.querySelector('[data-nav-toggle]');
+          if (!menu || menu.hasAttribute('hidden')) return;
+          menu.setAttribute('hidden', '');
+          if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
+        });
+      })();
+    </script>
+  </body>
+</html>

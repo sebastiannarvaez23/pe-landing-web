@@ -1,0 +1,117 @@
+---
+import { INQUIRY_INTERESTS, INQUIRY_LIMITS, INQUIRY_MESSAGES } from '../../constants/inquiry.constant';
+import './styles/contact-form.component.web.css';
+import './styles/contact-form.component.mobile.css';
+
+interface Props {
+  idPrefix: string;
+}
+
+const { idPrefix } = Astro.props;
+const limits = INQUIRY_LIMITS;
+---
+
+<form class="contact-form" id={idPrefix} data-contact-form novalidate>
+  <noscript>
+    <p class="contact-form__status contact-form__status--alert">
+      Para enviar la solicitud necesitas JavaScript: la validación y el canal de envío se ejecutan en el navegador.
+    </p>
+  </noscript>
+  <div class="contact-form__grid">
+    <div class="contact-form__field">
+      <label for={`${idPrefix}-name`}>Nombre</label>
+      <input
+        id={`${idPrefix}-name`}
+        name="name"
+        type="text"
+        autocomplete="name"
+        required
+        maxlength={limits.name.max}
+        data-inquiry-input="name"
+      />
+      <p class="contact-form__error" data-inquiry-error-for="name" hidden></p>
+    </div>
+
+    <div class="contact-form__field">
+      <label for={`${idPrefix}-company`}>Empresa</label>
+      <input
+        id={`${idPrefix}-company`}
+        name="company"
+        type="text"
+        autocomplete="organization"
+        required
+        maxlength={limits.company.max}
+        data-inquiry-input="company"
+      />
+      <p class="contact-form__error" data-inquiry-error-for="company" hidden></p>
+    </div>
+
+    <div class="contact-form__field">
+      <label for={`${idPrefix}-email`}>Correo electrónico</label>
+      <input
+        id={`${idPrefix}-email`}
+        name="email"
+        type="email"
+        autocomplete="email"
+        inputmode="email"
+        required
+        maxlength={limits.email.max}
+        data-inquiry-input="email"
+      />
+      <p class="contact-form__error" data-inquiry-error-for="email" hidden></p>
+    </div>
+
+    <div class="contact-form__field">
+      <label for={`${idPrefix}-role`}>Cargo <span>(opcional)</span></label>
+      <input
+        id={`${idPrefix}-role`}
+        name="role"
+        type="text"
+        autocomplete="organization-title"
+        maxlength={limits.role.max}
+        data-inquiry-input="role"
+      />
+      <p class="contact-form__error" data-inquiry-error-for="role" hidden></p>
+    </div>
+
+    <div class="contact-form__field contact-form__field--full">
+      <label for={`${idPrefix}-interest`}>Motivo de la consulta</label>
+      <select id={`${idPrefix}-interest`} name="interest" required data-inquiry-input="interest">
+        <option value="">Selecciona una opción</option>
+        {INQUIRY_INTERESTS.map((item) => <option value={item.value}>{item.label}</option>)}
+      </select>
+      <p class="contact-form__error" data-inquiry-error-for="interest" hidden></p>
+    </div>
+
+    <div class="contact-form__field contact-form__field--full">
+      <label for={`${idPrefix}-problem`}>Contexto</label>
+      <textarea
+        id={`${idPrefix}-problem`}
+        name="problem"
+        required
+        rows="6"
+        maxlength={limits.problem.max}
+        data-inquiry-input="problem"
+      ></textarea>
+      <p class="contact-form__error" data-inquiry-error-for="problem" hidden></p>
+    </div>
+  </div>
+
+  <div class="contact-form__honey" aria-hidden="true">
+    <label for={`${idPrefix}-website`}>Sitio web</label>
+    <input id={`${idPrefix}-website`} name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <p class="contact-form__note">Usaremos estos datos solo para responder tu solicitud.</p>
+
+  <p class="contact-form__status" data-inquiry-status role="status"></p>
+  <p class="contact-form__status contact-form__status--alert" data-inquiry-alert role="alert" hidden></p>
+
+  <button class="pe-btn pe-btn--primary" type="submit" data-inquiry-submit>{INQUIRY_MESSAGES.submit}</button>
+</form>
+
+<script>
+  import { bindContactForms } from './contact-form.script';
+
+  bindContactForms();
+</script>

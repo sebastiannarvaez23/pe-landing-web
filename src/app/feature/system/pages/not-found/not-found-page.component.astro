@@ -1,0 +1,24 @@
+---
+import SiteLayout from '../../../../core/components/site-layout/site-layout.component.astro';
+import { withBase } from '../../../../core/utils/public-url.util';
+import { SITE_NAME } from '../../../../core/constants/site.constant';
+import './styles/not-found-page.component.web.css';
+---
+
+<SiteLayout
+  title="Página no encontrada"
+  description={`La dirección no corresponde a una página publicada del sitio ${SITE_NAME}.`}
+  path="/404"
+  robots="noindex, follow"
+>
+  <header class="page-intro">
+    <div class="pe-container">
+      <h1>No encontramos esta página.</h1>
+      <p class="pe-lead page-intro__lead">La dirección no está publicada. Puedes volver al inicio o ir al contacto.</p>
+      <p class="not-found__actions">
+        <a class="pe-btn pe-btn--primary" href={withBase('/')}>Ir al inicio</a>
+        <a class="pe-btn pe-btn--secondary" href={withBase('/contacto')}>Contacto</a>
+      </p>
+    </div>
+  </header>
+</SiteLayout>

@@ -1,0 +1,67 @@
+@media (max-width: 767.98px),
+  (min-width: 768px) and (max-width: 1023.98px) and (orientation: portrait),
+  (max-width: 1023.98px) and (orientation: landscape) and (max-height: 500px) {
+  .home-career.pe-screen {
+    height: auto;
+    min-height: 0;
+  }
+
+  .home-career .pe-screen__grid {
+    display: block;
+    left: auto;
+    flex: none;
+    width: min(var(--pe-container), calc(100% - (var(--pe-gutter) * 2)));
+    max-width: none;
+    height: auto;
+    padding-bottom: calc(36px + 60vw);
+  }
+
+  .home-career .pe-screen__anchor {
+    position: absolute;
+    left: 50%;
+    bottom: calc(16px + 30vw);
+    width: 0;
+    height: 0;
+  }
+
+  .home-career__copy {
+    z-index: 4;
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+    touch-action: pan-y;
+  }
+
+  .home-career h2 {
+    font-size: clamp(1.45rem, 6.4vw, 1.8rem);
+  }
+
+  .home-career__lead {
+    margin-top: 12px;
+    font-size: 0.84rem;
+  }
+
+  .home-career__stances,
+  .home-career__forms {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .home-career__forms {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 14px;
+    margin-top: 10px;
+  }
+
+  .home-career__stances li p:last-child,
+  .home-career__forms li p:last-child {
+    font-size: 0.74rem;
+  }
+
+  .home-career__label {
+    margin-top: 16px;
+    font-size: 0.58rem;
+  }
+}

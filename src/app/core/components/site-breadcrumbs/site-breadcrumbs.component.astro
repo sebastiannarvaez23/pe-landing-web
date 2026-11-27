@@ -1,0 +1,25 @@
+---
+import type { Crumb } from '../../interfaces/site.interfaces';
+import { withBase } from '../../utils/public-url.util';
+import './styles/site-breadcrumbs.component.web.css';
+
+interface Props {
+  crumbs: readonly Crumb[];
+}
+
+const { crumbs } = Astro.props;
+---
+
+{
+  crumbs.length > 0 && (
+    <nav class="site-breadcrumbs" aria-label="Miga de pan">
+      <ol>
+        {crumbs.map((crumb) => (
+          <li>
+            {crumb.href ? <a href={withBase(crumb.href)}>{crumb.label}</a> : <span aria-current="page">{crumb.label}</span>}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}

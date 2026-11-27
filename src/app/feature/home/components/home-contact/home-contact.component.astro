@@ -1,0 +1,18 @@
+---
+import ContactForm from '../../../../core/components/contact-form/contact-form.component.astro';
+import './styles/home-contact.component.web.css';
+import './styles/home-contact.component.mobile.css';
+---
+
+<section class="home-contact pe-section" aria-labelledby="contact-title">
+  <div class="pe-container home-contact__layout">
+    <div>
+      <h2 id="contact-title">Contacto</h2>
+      <p class="pe-lead">
+        Si hay una oportunidad, un desafío o una idea, este es el canal. El mensaje solo se envía cuando la recepción
+        está configurada.
+      </p>
+    </div>
+    <ContactForm idPrefix="home" />
+  </div>
+</section>

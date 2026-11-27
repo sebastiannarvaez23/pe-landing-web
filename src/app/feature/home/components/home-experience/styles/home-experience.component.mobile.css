@@ -1,0 +1,117 @@
+@media (max-width: 767.98px),
+  (min-width: 768px) and (max-width: 1023.98px) and (orientation: portrait),
+  (max-width: 1023.98px) and (orientation: landscape) and (max-height: 500px) {
+  .home-experience .pe-screen__grid {
+    display: block;
+    left: auto;
+    width: min(var(--pe-container), calc(100% - (var(--pe-gutter) * 2)));
+    height: 100%;
+  }
+
+  .home-experience .pe-screen__anchor {
+    position: absolute;
+    right: auto;
+    left: 50%;
+    bottom: calc(16px + 43vw);
+    top: auto;
+    width: 0;
+    height: 0;
+    transform: none;
+  }
+
+  .home-experience__copy {
+    width: 100%;
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+    touch-action: pan-y;
+  }
+
+  .home-experience__carousel {
+    touch-action: pan-y;
+  }
+
+  .home-experience h2 {
+    font-size: clamp(1.45rem, 6.4vw, 1.8rem);
+  }
+
+  .home-experience__carousel {
+    margin-top: 22px;
+  }
+
+  .home-experience__identity {
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .home-experience__logo {
+    flex: 0 1 auto;
+    max-width: 42%;
+  }
+
+  .home-experience__logo img {
+    height: 56px;
+    max-width: 100%;
+  }
+
+  .home-experience__heading {
+    min-width: 0;
+  }
+
+  .home-experience__heading h3 {
+    font-size: 1.02rem;
+  }
+
+  .home-experience__role {
+    font-size: 0.82rem;
+  }
+
+  .home-experience__dates {
+    font-size: 0.68rem;
+  }
+
+  .home-experience__detail {
+    min-height: 0;
+    margin-top: 16px;
+  }
+
+  .home-experience__text {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .home-experience__text::before {
+    margin-bottom: 10px;
+  }
+
+  .home-experience__label {
+    gap: 8px;
+    margin-top: 12px;
+    font-size: 0.58rem;
+  }
+
+  .home-experience__acts,
+  .home-experience__wins {
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  .home-experience__acts li,
+  .home-experience__wins li {
+    font-size: 0.74rem;
+  }
+
+  .home-experience__pager {
+    margin-top: 18px;
+  }
+
+  .home-experience__nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .home-experience__page {
+    width: 36px;
+    height: 36px;
+  }
+}

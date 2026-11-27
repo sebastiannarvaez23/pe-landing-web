@@ -1,0 +1,113 @@
+/* =============================================================================
+   Color — una sola fuente
+   -----------------------------------------------------------------------------
+   Dark: muestreado del mockup.
+     fondo        #000116
+     superficie   #07263f   (tarjetas, un paso sobre el fondo)
+     cian botón   #0496d0 → #04b2ef
+     cian texto   #00aee4
+     texto        #f7f8fb
+   El gris de párrafo del JPEG está aplastado; --pe-ref-muted es el equivalente
+   legible sobre ese fondo.
+
+   Light: mismas tintas, superficies claras y cian más profundo para que el
+   texto y los botones mantengan contraste.
+
+   Activo: data-theme="dark" | data-theme="light" en <html>.
+   Sin atributo, aplica el dark.
+   ============================================================================= */
+
+:root {
+  --pe-ref-bg: #000116;
+  --pe-ref-bg-rgb: 0 1 22;
+  --pe-ref-surface: #07263f;
+  --pe-ref-surface-soft: #04182c;
+  --pe-ref-line: #144864;
+  --pe-ref-line-strong: #1c6288;
+  --pe-ref-cyan: #00aee4;
+  --pe-ref-cyan-deep: #0496d0;
+  --pe-ref-cyan-hot: #04b2ef;
+  --pe-ref-text: #f7f8fb;
+  --pe-ref-muted: #b7c2d0;
+  --pe-ref-faint: #7e8da3;
+  --pe-ref-danger: #e06b78;
+  --pe-ref-ok: #3ddcb5;
+
+  --pe-light-bg: #f4f8fb;
+  --pe-light-surface: #ffffff;
+  --pe-light-surface-soft: #e7f2f8;
+  --pe-light-text: #061422;
+  --pe-light-muted: #4c6276;
+  --pe-light-faint: #6d8294;
+  --pe-light-line: #d5e3ee;
+  --pe-light-line-strong: #b7cddd;
+  --pe-light-accent: #026f96;
+  --pe-light-accent-strong: #015a7c;
+  --pe-light-danger: #b4233a;
+  --pe-light-ok: #0f766e;
+}
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --pe-bg: var(--pe-ref-bg);
+  --pe-bg-elevated: var(--pe-ref-surface);
+  --pe-bg-muted: var(--pe-ref-surface-soft);
+  --pe-text: var(--pe-ref-text);
+  --pe-text-muted: var(--pe-ref-muted);
+  --pe-text-faint: var(--pe-ref-faint);
+  --pe-line: var(--pe-ref-line);
+  --pe-line-strong: var(--pe-ref-line-strong);
+  --pe-accent: var(--pe-ref-cyan);
+  --pe-accent-strong: var(--pe-ref-cyan-hot);
+  --pe-on-accent: #ffffff;
+  --pe-button-from: var(--pe-ref-cyan-deep);
+  --pe-button-to: var(--pe-ref-cyan-hot);
+  --pe-button-from-hover: #05a6e2;
+  --pe-button-to-hover: #3ecbf6;
+  --pe-accent-shadow: 0 8px 22px rgb(4 150 208 / 0.32);
+  --pe-danger: var(--pe-ref-danger);
+  --pe-ok: var(--pe-ref-ok);
+  --pe-focus: var(--pe-ref-cyan);
+  --pe-selection: rgb(0 174 228 / 0.28);
+  --pe-nav-bg: rgb(var(--pe-ref-bg-rgb) / 0.88);
+  --pe-nav-bg-open: var(--pe-ref-bg);
+  --pe-nav-border: rgb(0 174 228 / 0.16);
+  --pe-nav-text: var(--pe-ref-text);
+  --pe-nav-text-muted: rgb(247 248 251 / 0.78);
+  --pe-nav-menu-bg: #04182e;
+  --pe-overlay: linear-gradient(180deg, rgb(var(--pe-ref-bg-rgb) / 0.55), rgb(var(--pe-ref-bg-rgb) / 0));
+  --pe-shadow: 0 18px 40px rgb(0 0 0 / 0.35);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --pe-bg: var(--pe-light-bg);
+  --pe-bg-elevated: var(--pe-light-surface);
+  --pe-bg-muted: var(--pe-light-surface-soft);
+  --pe-text: var(--pe-light-text);
+  --pe-text-muted: var(--pe-light-muted);
+  --pe-text-faint: var(--pe-light-faint);
+  --pe-line: var(--pe-light-line);
+  --pe-line-strong: var(--pe-light-line-strong);
+  --pe-accent: var(--pe-light-accent);
+  --pe-accent-strong: var(--pe-light-accent-strong);
+  --pe-on-accent: #ffffff;
+  --pe-button-from: #02779f;
+  --pe-button-to: #0390bf;
+  --pe-button-from-hover: #0386b3;
+  --pe-button-to-hover: #04a4d4;
+  --pe-accent-shadow: 0 8px 22px rgb(2 111 150 / 0.22);
+  --pe-danger: var(--pe-light-danger);
+  --pe-ok: var(--pe-light-ok);
+  --pe-focus: var(--pe-light-accent);
+  --pe-selection: #c9eef8;
+  --pe-nav-bg: rgb(255 255 255 / 0.92);
+  --pe-nav-bg-open: #ffffff;
+  --pe-nav-border: var(--pe-light-line);
+  --pe-nav-text: var(--pe-light-text);
+  --pe-nav-text-muted: var(--pe-light-muted);
+  --pe-nav-menu-bg: #ffffff;
+  --pe-overlay: linear-gradient(180deg, rgb(244 248 251 / 0.9), rgb(244 248 251 / 0));
+  --pe-shadow: 0 16px 36px rgb(6 20 34 / 0.08);
+}

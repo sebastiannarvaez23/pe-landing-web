@@ -1,0 +1,31 @@
+.contact-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(220px, 0.7fr);
+  gap: var(--space-7);
+  padding-bottom: var(--space-9);
+  align-items: start;
+}
+
+.contact-page aside {
+  padding: var(--space-5);
+  background: var(--pe-bg-muted);
+  border-radius: var(--pe-radius);
+}
+
+.contact-page aside h2 {
+  font-size: 1.25rem;
+}
+
+.contact-page aside p,
+.contact-page aside ul {
+  margin-top: var(--space-3);
+  color: var(--pe-text-muted);
+}
+
+.contact-page aside ul {
+  padding-left: 1.1rem;
+}
+
+.contact-page aside a {
+  color: var(--pe-accent);
+}

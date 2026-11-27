@@ -1,0 +1,211 @@
+.home-hero {
+  background:
+    radial-gradient(900px 420px at 78% 18%, rgb(0 174 228 / 0.16), transparent 62%),
+    var(--pe-bg);
+}
+
+.home-hero__glow {
+  position: absolute;
+  z-index: -1;
+  width: min(560px, 48vw);
+  height: min(560px, 48vw);
+  right: 6%;
+  top: 8%;
+  background: radial-gradient(circle, rgb(0 174 228 / 0.28), transparent 68%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.home-hero__copy {
+  position: relative;
+  z-index: 2;
+  width: max-content;
+  max-width: min(760px, 54vw);
+  align-self: center;
+  padding: 0;
+}
+
+.home-hero h1 {
+  max-width: none;
+  font-size: clamp(2.55rem, 3.85vw, 3.65rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.048em;
+}
+
+.home-hero h1 span {
+  display: block;
+  text-wrap: nowrap;
+}
+
+.home-hero__accent {
+  color: var(--pe-accent);
+}
+
+.home-hero__lead {
+  margin-top: 18px;
+  max-width: 42ch;
+  color: var(--pe-text-muted);
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+.home-hero__meta {
+  margin-top: 14px;
+  color: var(--pe-text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  text-wrap: balance;
+  white-space: nowrap;
+}
+
+.home-hero__rule,
+.home-hero__cta-icon,
+.home-hero__note-icon,
+.home-hero__pillars {
+  display: none;
+}
+
+.home-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: fit-content;
+  min-height: 48px;
+  margin-top: 18px;
+  padding: 0 22px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--pe-button-from) 0%, var(--pe-button-to) 100%);
+  color: var(--pe-on-accent);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.home-hero__cta:hover {
+  background: linear-gradient(90deg, var(--pe-button-from-hover) 0%, var(--pe-button-to-hover) 100%);
+}
+
+.home-hero__note {
+  margin-top: 10px;
+  max-width: 36ch;
+  color: var(--pe-text-faint);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.home-hero__media {
+  position: relative;
+  z-index: 2;
+  min-height: 0;
+  height: auto;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+}
+
+.home-hero__mark {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  width: min(58vh, 540px);
+  aspect-ratio: 1;
+  color: var(--pe-accent);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.home-hero__mark-rotor,
+.home-hero__mark-fixed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.home-hero__mark-rotor svg,
+.home-hero__mark-fixed {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.home-hero__mark-rotor--rev {
+  pointer-events: none;
+}
+
+.home-hero__mark-sweep {
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  color: var(--pe-accent);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0 78%,
+    currentColor 90%,
+    transparent 100%
+  );
+  opacity: 0.55;
+  -webkit-mask: radial-gradient(circle, transparent 46%, #000 47.5% 70%, transparent 71.5%);
+  mask: radial-gradient(circle, transparent 46%, #000 47.5% 70%, transparent 71.5%);
+  transform-origin: center center;
+  -webkit-animation: pe-mark-spin 9s linear infinite;
+  animation: pe-mark-spin 9s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero__mark-sweep {
+    -webkit-animation: pe-mark-spin 9s linear infinite !important;
+    animation: pe-mark-spin 9s linear infinite !important;
+  }
+}
+
+@keyframes pe-mark-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pe-mark-flow {
+  to { stroke-dashoffset: -240; }
+}
+
+@keyframes pe-mark-pulse {
+  0%, 100% { opacity: 0.28; }
+  50% { opacity: 1; }
+}
+
+.home-hero__media img {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: auto;
+  height: min(72vh, 680px);
+  max-width: min(46vw, 600px);
+  max-height: 72vh;
+  margin-left: -14%;
+  margin-right: -4%;
+  object-fit: contain;
+  object-position: center center;
+}
+
+[data-theme='light'] .home-hero {
+  background:
+    radial-gradient(900px 420px at 78% 18%, rgb(2 111 150 / 0.1), transparent 62%),
+    var(--pe-bg);
+}
+
+[data-theme='light'] .home-hero__glow {
+  background: radial-gradient(circle, rgb(2 111 150 / 0.16), transparent 68%);
+}

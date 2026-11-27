@@ -1,0 +1,9 @@
+@media (max-width: 767.98px),
+  (min-width: 768px) and (max-width: 1023.98px) and (orientation: portrait),
+  (max-width: 1023.98px) and (orientation: landscape) and (max-height: 500px) {
+  .site-footer__grid,
+  .site-footer__legal {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,139 @@
+.pe-story {
+  position: relative;
+}
+
+.pe-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100vh;
+  height: 100dvh;
+  padding: var(--pe-nav-h) 0 0;
+  color: var(--pe-text);
+}
+
+.pe-screen__grid {
+  display: grid;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: max-content;
+  max-width: calc(100% - 72px);
+  height: 100%;
+  margin-inline: auto;
+  grid-template-columns: max-content max-content;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  left: 1.2vw;
+}
+
+.pe-screen__anchor:not(.home-hero__media) {
+  width: min(46vw, 600px);
+  height: min(72vh, 680px);
+}
+
+.pe-screen__copy {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+}
+
+.pe-mark-stage {
+  --pe-mark-blend: 0;
+  --pe-hero-cover: 1;
+  position: fixed;
+  z-index: 1;
+  left: 72%;
+  top: 46%;
+  width: min(58vh, 540px);
+  aspect-ratio: 1;
+  color: var(--pe-accent);
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(calc(1 - var(--pe-mark-blend) * 0.14));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 calc(76% + (1 - var(--pe-hero-cover)) * 24%),
+    transparent calc(96% + (1 - var(--pe-hero-cover)) * 8%)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 calc(76% + (1 - var(--pe-hero-cover)) * 24%),
+    transparent calc(96% + (1 - var(--pe-hero-cover)) * 8%)
+  );
+  -webkit-mask-size: 160% 160%;
+  mask-size: 160% 160%;
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-clip: no-clip;
+  mask-clip: no-clip;
+}
+
+.pe-mark-shape {
+  position: absolute;
+  inset: 0;
+}
+
+.pe-mark-shape--next {
+  opacity: 0;
+}
+
+.pe-mark-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pe-mark-shards {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: var(--pe-shard, 0);
+  pointer-events: none;
+}
+
+.pe-mark-shards [data-pe-shard] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (max-height: 960px) and (min-width: 1024px),
+  (max-height: 960px) and (min-width: 768px) and (orientation: landscape) and (min-height: 501px) {
+  .pe-screen.pe-screen {
+    height: auto;
+    min-height: 100dvh;
+    justify-content: center;
+    padding-bottom: 36px;
+  }
+
+  .pe-screen .pe-screen__grid.pe-screen__grid {
+    flex: none;
+    height: auto;
+  }
+
+  .pe-screen .home-academic__copy,
+  .pe-screen .home-experience__copy,
+  .pe-screen .home-portfolio__copy,
+  .pe-screen .home-career__copy {
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+}
+
+[data-pe-section] {
+  scroll-margin-top: -80px;
+}
+
+[data-pe-section] .home-hero__copy,
+[data-pe-section] .home-academic__copy,
+[data-pe-section] .home-experience__copy,
+[data-pe-section] .home-portfolio__copy,
+[data-pe-section] .home-career__copy {
+  opacity: var(--pe-in, 1);
+  transform: translateY(calc((1 - var(--pe-in, 1)) * 28px));
+}

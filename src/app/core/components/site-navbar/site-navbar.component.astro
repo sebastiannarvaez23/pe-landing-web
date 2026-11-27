@@ -1,0 +1,108 @@
+---
+import { MESSAGES } from '../../i18n/messages';
+import { withBase } from '../../utils/public-url.util';
+import BrandMark from '../brand-mark/brand-mark.component.astro';
+import './styles/site-navbar.component.web.css';
+import './styles/site-navbar.component.mobile.css';
+
+interface Props {
+  path: string;
+  overlay?: boolean;
+}
+
+const { path, overlay = false } = Astro.props;
+const copy = MESSAGES.es;
+
+const sections = [
+  { href: '#inicio', key: 'nav.start' },
+  { href: '#academico', key: 'nav.academic' },
+  { href: '#experiencia', key: 'nav.experience' },
+  { href: '#portafolio', key: 'nav.portfolio' },
+  { href: '#carrera', key: 'nav.career' },
+  { href: '#contacto', key: 'nav.contact' },
+] as const;
+---
+
+<header class:list={['site-navbar', overlay && 'site-navbar--overlay']} data-site-nav>
+  <div class="pe-container site-navbar__bar">
+    <a class="site-navbar__brand" href={withBase('/')} data-i18n-aria="nav.home" aria-label={copy['nav.home']}>
+      <BrandMark variant="horizontal" />
+    </a>
+
+    <nav class="section-toolbar" data-i18n-aria="nav.sections" aria-label={copy['nav.sections']}>
+      {
+        sections.map((item) => (
+          <a
+            href={item.href}
+            data-i18n={item.key}
+            aria-current={path === '/' && item.href === '#inicio' ? 'page' : undefined}
+          >
+            {copy[item.key]}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="site-navbar__tools">
+      <div class="lang-switch" role="group" data-i18n-aria="nav.language" aria-label={copy['nav.language']}>
+        <button type="button" data-lang-set="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang-set="en" aria-pressed="false">EN</button>
+      </div>
+      <button
+        type="button"
+        class="nav-menu"
+        data-nav-toggle
+        aria-expanded="false"
+        aria-controls="site-menu"
+        data-i18n-aria="nav.menu"
+        aria-label={copy['nav.menu']}
+      >
+        <svg class="nav-menu__open" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+        <svg class="nav-menu__close" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="theme-switch"
+        data-theme-toggle
+        aria-pressed="true"
+        data-i18n-aria="nav.themeToLight"
+        aria-label={copy['nav.themeToLight']}
+      >
+        <svg class="theme-switch__sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+          <path
+            d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5 5l1.6 1.6M17.4 17.4 19 19M19 5l-1.6 1.6M6.6 17.4 5 19"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"></path>
+        </svg>
+        <svg class="theme-switch__moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M15.5 3.2a8.2 8.2 0 1 0 5.3 12.6A7 7 0 0 1 15.5 3.2Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <nav id="site-menu" class="site-menu" hidden>
+    {
+      sections.map((item) => (
+        <a href={item.href} data-i18n={item.key} aria-current={path === '/' && item.href === '#inicio' ? 'page' : undefined}>
+          {copy[item.key]}
+        </a>
+      ))
+    }
+    <button type="button" class="site-menu__theme" data-theme-toggle>
+      <span class="site-menu__theme-to-light" data-i18n="nav.themeToLight">{copy['nav.themeToLight']}</span>
+      <span class="site-menu__theme-to-dark" data-i18n="nav.themeToDark">{copy['nav.themeToDark']}</span>
+    </button>
+  </nav>
+</header>

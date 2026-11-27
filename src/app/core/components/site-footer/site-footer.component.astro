@@ -1,0 +1,129 @@
+---
+import { SITE_COPYRIGHT_YEAR, SITE_DESCRIPTION, SITE_NAME } from '../../constants/site.constant';
+import { withBase } from '../../utils/public-url.util';
+import { MESSAGES } from '../../i18n/messages';
+import BrandMark from '../brand-mark/brand-mark.component.astro';
+import './styles/site-footer.component.web.css';
+import './styles/site-footer.component.tablet.css';
+import './styles/site-footer.component.mobile.css';
+
+const year = SITE_COPYRIGHT_YEAR;
+const copy = MESSAGES.es;
+
+const sections = [
+  { href: withBase('/#inicio'), key: 'nav.start' },
+  { href: withBase('/#academico'), key: 'nav.academic' },
+  { href: withBase('/#experiencia'), key: 'nav.experience' },
+  { href: withBase('/#portafolio'), key: 'nav.portfolio' },
+  { href: withBase('/#carrera'), key: 'nav.career' },
+  { href: withBase('/#contacto'), key: 'nav.contact' },
+] as const;
+---
+
+<footer class="site-footer" id="contacto">
+  <div class="pe-container site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="site-footer__logo" href={withBase('/')} data-i18n-aria="nav.home" aria-label={copy['nav.home']}>
+        <BrandMark variant="stacked" />
+      </a>
+      <p>{SITE_DESCRIPTION}</p>
+    </div>
+
+    <nav data-i18n-aria="nav.sections" aria-label={copy['nav.sections']}>
+      <p class="site-footer__title" data-i18n="footer.sections">{copy['footer.sections']}</p>
+      <ul>
+        {
+          sections.map((item) => (
+            <li>
+              <a href={item.href} data-i18n={item.key}>
+                {copy[item.key]}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div>
+      <p class="site-footer__title" id="footer-contact" data-i18n="footer.contact">{copy['footer.contact']}</p>
+      <ul class="site-footer__channels">
+        <li>
+          <a class="site-footer__channel" href="tel:+573106418293" data-i18n-aria="footer.phoneAria" aria-label={copy['footer.phoneAria']}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="7" y="2.5" width="10" height="19" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+              <path d="M11 18.2h2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+            <span data-i18n="footer.phone">{copy['footer.phone']}</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="site-footer__channel"
+            href="https://wa.me/573106418293"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n-aria="footer.whatsappAria"
+            aria-label={copy['footer.whatsappAria']}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12.04 2C6.58 2 2.15 6.4 2.15 11.83c0 1.74.46 3.44 1.34 4.94L2 22l5.39-1.41a10 10 0 0 0 4.65 1.15h.01c5.46 0 9.89-4.4 9.89-9.83C21.94 6.4 17.5 2 12.04 2zm5.76 13.89c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.12.1-1.81-.11-.41-.13-.95-.31-1.64-.61-2.88-1.25-4.76-4.15-4.9-4.34-.14-.2-1.16-1.54-1.16-2.94s.73-2.08 1-2.37c.24-.26.64-.38.86-.38h.62c.2 0 .46-.01.7.53.24.58.82 2 .89 2.15.07.14.12.32.02.51-.09.2-.14.32-.28.49-.14.17-.29.38-.41.51-.14.14-.28.29-.12.56.16.26.7 1.16 1.51 1.88 1.04.92 1.91 1.21 2.18 1.35.26.14.42.12.58-.07.16-.2.66-.77.84-1.03.17-.26.35-.22.58-.13.24.09 1.5.71 1.76.84.26.13.43.19.49.3.07.11.07.64-.17 1.32z"
+              ></path>
+            </svg>
+            <span data-i18n="footer.whatsapp">{copy['footer.whatsapp']}</span>
+          </a>
+        </li>
+        <li>
+          <a class="site-footer__channel" href="mailto:narvaezsebas8@gmail.com" data-i18n-aria="footer.emailAria" aria-label={copy['footer.emailAria']}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+              <path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"></path>
+            </svg>
+            <span data-i18n="footer.email">{copy['footer.email']}</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="site-footer__channel"
+            href="https://www.linkedin.com/in/sebastiannarvaezlopera/"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n-aria="footer.linkedinAria"
+            aria-label={copy['footer.linkedinAria']}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8.5h4.56V24H.22V8.5zM8.34 8.5h4.37v2.12h.06c.61-1.16 2.1-2.38 4.32-2.38 4.62 0 5.48 3.04 5.48 7v8.76h-4.56v-7.77c0-1.85-.03-4.23-2.58-4.23-2.58 0-2.98 2.02-2.98 4.1V24H8.34V8.5z"
+              ></path>
+            </svg>
+            <span data-i18n="footer.linkedin">{copy['footer.linkedin']}</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="site-footer__channel"
+            href="https://github.com/sebastiannarvaez23"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n-aria="footer.githubAria"
+            aria-label={copy['footer.githubAria']}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.48A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"
+              ></path>
+            </svg>
+            <span data-i18n="footer.github">{copy['footer.github']}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pe-container site-footer__legal">
+    <p>© {year} {SITE_NAME}</p>
+  </div>
+</footer>

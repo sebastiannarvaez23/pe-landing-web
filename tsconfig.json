@@ -1,0 +1,13 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist", "**/*.spec.ts"],
+  "compilerOptions": {
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "paths": {
+      "@app/*": ["./src/app/*"],
+      "@env/*": ["./src/environments/*"]
+    }
+  }
+}

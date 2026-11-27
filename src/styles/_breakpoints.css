@@ -1,0 +1,26 @@
+/* =============================================================================
+   pe-landing-web — Breakpoints (misma fuente de verdad que ne-landing-web)
+   =============================================================================
+   Dispositivo              Condición
+   ─────────────────────────────────────────────────────────────────────────────
+   Mobile                   max-width: 767.98px
+   Tablet vertical          768–1023.98px AND orientation: portrait  → UI móvil
+   Tablet horizontal        768–1023.98px AND orientation: landscape → UI web
+   Phone landscape          max-width: 1023.98px AND landscape AND max-height: 500px
+                            → UI móvil
+   Web/Desktop              min-width: 1024px
+
+   Móvil + tablet portrait (+ phone landscape altura corta):
+   @media (max-width: 767.98px),
+          (min-width: 768px) and (max-width: 1023.98px) and (orientation: portrait),
+          (max-width: 1023.98px) and (orientation: landscape) and (max-height: 500px)
+
+   Web + tablet landscape (altura ≥501px; excluye phone landscape):
+   @media (min-width: 1024px),
+          (min-width: 768px) and (max-width: 1023.98px) and (orientation: landscape) and (min-height: 501px)
+
+   Convención de archivos:
+     <nombre>.component.web.css     — estilos base (desktop-first)
+     <nombre>.component.tablet.css  — overrides de tablet landscape, si hacen falta
+     <nombre>.component.mobile.css  — móvil + tablet portrait
+   ============================================================================= */

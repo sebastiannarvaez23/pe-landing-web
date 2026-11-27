@@ -1,0 +1,26 @@
+---
+import { findRoute, visibleCrumbs } from '../../../../app-routing';
+import PageIntro from '../../../../core/components/page-intro/page-intro.component.astro';
+import SiteLayout from '../../../../core/components/site-layout/site-layout.component.astro';
+import { pageGraph } from '../../../../core/utils/page-meta.util';
+
+const route = findRoute('/nosotros');
+---
+
+<SiteLayout title={route.title} description={route.description} path={route.path} jsonLd={[pageGraph(route.path)]}>
+  <PageIntro
+    title="Tecnología con sentido de negocio"
+    lead="La ingeniería de software sostiene el trabajo. La dirección es otra: leer una oportunidad y decidir dónde la tecnología cambia el resultado."
+    crumbs={visibleCrumbs(route.path)}
+    kicker="Perfil"
+  />
+  <div class="pe-container editorial">
+    <section>
+      <h2>Lo que sigue</h2>
+      <p>
+        El interés está en aplicar la tecnología y la inteligencia artificial donde un negocio decide, opera y crea valor.
+        Más adelante, en productos y ecosistemas propios.
+      </p>
+    </section>
+  </div>
+</SiteLayout>

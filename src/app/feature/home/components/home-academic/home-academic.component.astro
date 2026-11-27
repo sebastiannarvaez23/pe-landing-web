@@ -1,0 +1,215 @@
+---
+import './styles/home-academic.component.web.css';
+import './styles/home-academic.component.mobile.css';
+import { MESSAGES } from '../../../../core/i18n/messages';
+import { withBase } from '../../../../core/utils/public-url.util';
+
+const copy = MESSAGES.es;
+
+const degrees: readonly { id: 'grad' | 'under'; active: boolean }[] = [
+  { id: 'grad', active: false },
+  { id: 'under', active: true },
+];
+
+const visibleDegrees = degrees.filter((degree) => degree.active);
+const firstDegreeId = visibleDegrees[0]?.id;
+---
+
+<section
+  class="pe-screen home-academic"
+  id="academico"
+  data-pe-section
+  data-pe-side="start"
+  data-pe-shape="cap"
+  aria-labelledby="academic-title"
+>
+  <div class="pe-screen__grid">
+    <div class="pe-screen__anchor" data-pe-anchor aria-hidden="true"></div>
+    <div class="pe-screen__copy home-academic__copy">
+      <p class="home-academic__kicker" data-i18n="academic.kicker">{copy['academic.kicker']}</p>
+      <h2 id="academic-title" data-i18n="academic.line1">{copy['academic.line1']}</h2>
+      <div
+        class="home-academic__carousel"
+        data-pe-academic
+        data-i18n-aria="academic.carousel"
+        aria-label={copy['academic.carousel']}
+        aria-roledescription="carrusel"
+      >
+        <div class="home-academic__viewport">
+        <article
+          class:list={['home-academic__degree', { 'is-active': firstDegreeId === 'grad' }]}
+          data-pe-slide
+          data-pe-active={degrees[0].active ? 'true' : 'false'}
+          aria-hidden={firstDegreeId === 'grad' ? 'false' : 'true'}
+          hidden={!degrees[0].active}
+        >
+          <p class="home-academic__label" data-i18n="academic.gradLabel">{copy['academic.gradLabel']}</p>
+          <div class="home-academic__logo">
+            <img
+              class="home-academic__logo-icesi home-academic__logo-icesi--dark"
+              src={withBase('/assets/logo-icesi-dark.png')}
+              width="148"
+              height="58"
+              alt={copy['academic.icesiAlt']}
+              data-i18n-alt="academic.icesiAlt"
+            />
+            <img
+              class="home-academic__logo-icesi home-academic__logo-icesi--light"
+              src={withBase('/assets/logo-icesi-light.png')}
+              width="148"
+              height="56"
+              alt={copy['academic.icesiAlt']}
+              data-i18n-alt="academic.icesiAlt"
+            />
+          </div>
+          <h3 data-i18n="academic.gradTitle">{copy['academic.gradTitle']}</h3>
+          <p class="home-academic__school">
+            <span data-i18n="academic.gradSchool">{copy['academic.gradSchool']}</span>
+            <span class="home-academic__status" data-i18n="academic.gradStatus">{copy['academic.gradStatus']}</span>
+          </p>
+          <p class="home-academic__text" data-i18n="academic.gradText">{copy['academic.gradText']}</p>
+          <ul class="home-academic__skills">
+            <li data-i18n="academic.gradUse1">{copy['academic.gradUse1']}</li>
+            <li data-i18n="academic.gradUse2">{copy['academic.gradUse2']}</li>
+            <li data-i18n="academic.gradUse3">{copy['academic.gradUse3']}</li>
+            <li data-i18n="academic.gradUse4">{copy['academic.gradUse4']}</li>
+          </ul>
+        </article>
+        <article
+          class:list={['home-academic__degree', { 'is-active': firstDegreeId === 'under' }]}
+          data-pe-slide
+          data-pe-active={degrees[1].active ? 'true' : 'false'}
+          aria-hidden={firstDegreeId === 'under' ? 'false' : 'true'}
+          hidden={!degrees[1].active}
+        >
+          <p class="home-academic__label" data-i18n="academic.underLabel">{copy['academic.underLabel']}</p>
+          <div class="home-academic__logo">
+            <img
+              src={withBase('/assets/logo-usc.png')}
+              width="48"
+              height="48"
+              alt={copy['academic.uscAlt']}
+              data-i18n-alt="academic.uscAlt"
+            />
+          </div>
+          <h3 data-i18n="academic.underTitle">{copy['academic.underTitle']}</h3>
+          <p class="home-academic__school" data-i18n="academic.underSchool">{copy['academic.underSchool']}</p>
+          <p class="home-academic__text" data-i18n="academic.underText">{copy['academic.underText']}</p>
+          <ul class="home-academic__skills">
+            <li data-i18n="academic.skill1">{copy['academic.skill1']}</li>
+            <li data-i18n="academic.skill2">{copy['academic.skill2']}</li>
+            <li data-i18n="academic.skill3">{copy['academic.skill3']}</li>
+            <li data-i18n="academic.skill4">{copy['academic.skill4']}</li>
+          </ul>
+        </article>
+        </div>
+        <div class="home-academic__pager">
+          <button
+            class="home-academic__nav"
+            type="button"
+            data-pe-prev
+            data-i18n-aria="academic.prev"
+            aria-label={copy['academic.prev']}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 6 8 12l6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+          <div class="home-academic__pages">
+            {
+              visibleDegrees.map((degree, index) => (
+                <button
+                  class="home-academic__page"
+                  type="button"
+                  data-pe-page
+                  data-i18n-aria={degree.id === 'grad' ? 'academic.gradLabel' : 'academic.underLabel'}
+                  aria-label={degree.id === 'grad' ? copy['academic.gradLabel'] : copy['academic.underLabel']}
+                  aria-current={index === 0 ? 'true' : 'false'}
+                >
+                  {index + 1}
+                </button>
+              ))
+            }
+          </div>
+          <button
+            class="home-academic__nav"
+            type="button"
+            data-pe-next
+            data-i18n-aria="academic.next"
+            aria-label={copy['academic.next']}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m10 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { createSlidePlayer } from '../../carousel-slide';
+
+  const root = document.querySelector<HTMLElement>('[data-pe-academic]');
+  if (root) {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-pe-slide]')].filter(
+      (slide) => slide.dataset.peActive !== 'false',
+    );
+    const pages = [...root.querySelectorAll<HTMLButtonElement>('[data-pe-page]')];
+    const prev = root.querySelector<HTMLButtonElement>('[data-pe-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-pe-next]');
+    let index = 0;
+    const player = createSlidePlayer();
+
+    const show = (nextIndex: number) => {
+      const outgoing = slides[index];
+      const incoming = slides[nextIndex];
+      const dir = nextIndex === index ? 0 : nextIndex > index ? 1 : -1;
+      index = nextIndex;
+      slides.forEach((slide, i) => {
+        const on = i === index;
+        slide.classList.toggle('is-active', on);
+        slide.removeAttribute('hidden');
+        slide.setAttribute('aria-hidden', on ? 'false' : 'true');
+      });
+      pages.forEach((page, i) => {
+        page.setAttribute('aria-current', i === index ? 'true' : 'false');
+      });
+      if (prev) prev.disabled = index === 0;
+      if (next) next.disabled = index === slides.length - 1;
+      if (dir !== 0 && outgoing && incoming) player.play(slides, outgoing, incoming, dir);
+    };
+
+    prev?.addEventListener('click', () => {
+      if (index > 0) show(index - 1);
+    });
+    next?.addEventListener('click', () => {
+      if (index < slides.length - 1) show(index + 1);
+    });
+    pages.forEach((page, i) => {
+      page.addEventListener('click', () => show(i));
+    });
+    root.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') next?.click();
+      if (event.key === 'ArrowLeft') prev?.click();
+    });
+
+    let swipeX = 0;
+    let swipeY = 0;
+    root.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'mouse') return;
+      swipeX = event.clientX;
+      swipeY = event.clientY;
+    });
+    root.addEventListener('pointerup', (event) => {
+      if (event.pointerType === 'mouse') return;
+      const dx = event.clientX - swipeX;
+      const dy = event.clientY - swipeY;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+      if (dx < 0) next?.click();
+      else prev?.click();
+    });
+    show(0);
+  }
+</script>

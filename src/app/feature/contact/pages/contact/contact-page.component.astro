@@ -1,0 +1,47 @@
+---
+import { findRoute, visibleCrumbs } from '../../../../app-routing';
+import ContactForm from '../../../../core/components/contact-form/contact-form.component.astro';
+import PageIntro from '../../../../core/components/page-intro/page-intro.component.astro';
+import SiteLayout from '../../../../core/components/site-layout/site-layout.component.astro';
+import { pageGraph } from '../../../../core/utils/page-meta.util';
+import { environment } from '../../../../../environments/environment';
+import './styles/contact-page.component.web.css';
+import './styles/contact-page.component.mobile.css';
+
+const route = findRoute('/contacto');
+---
+
+<SiteLayout title={route.title} description={route.description} path={route.path} jsonLd={[pageGraph(route.path)]}>
+  <PageIntro
+    title="Contacto"
+    lead="Una conversación empieza por el contexto: la oportunidad, el desafío o la idea. El mensaje solo se envía cuando el canal está configurado."
+    crumbs={visibleCrumbs(route.path)}
+    kicker="Contacto"
+  />
+  <div class="pe-container contact-page">
+    <ContactForm idPrefix="contact" />
+    <aside>
+      <h2>Qué ocurre después</h2>
+      <p>Si el canal responde con una referencia, el formulario confirma el envío y se vacía.</p>
+      <p>Si el canal no está conectado, los datos se quedan en la pantalla.</p>
+      {
+        (environment.contactEmail || environment.linkedinUrl) && (
+          <ul>
+            {environment.contactEmail && (
+              <li>
+                <a href={`mailto:${environment.contactEmail}`}>{environment.contactEmail}</a>
+              </li>
+            )}
+            {environment.linkedinUrl && (
+              <li>
+                <a href={environment.linkedinUrl} rel="noopener noreferrer">
+                  LinkedIn
+                </a>
+              </li>
+            )}
+          </ul>
+        )
+      }
+    </aside>
+  </div>
+</SiteLayout>

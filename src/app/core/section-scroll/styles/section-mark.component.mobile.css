@@ -1,0 +1,17 @@
+@media (max-width: 767.98px),
+  (min-width: 768px) and (max-width: 1023.98px) and (orientation: portrait),
+  (max-width: 1023.98px) and (orientation: landscape) and (max-height: 500px) {
+  .pe-mark-stage {
+    z-index: 3;
+    width: 86vw;
+  }
+
+  [data-pe-section] .home-hero__copy,
+  [data-pe-section] .home-academic__copy,
+  [data-pe-section] .home-experience__copy,
+  [data-pe-section] .home-portfolio__copy,
+  [data-pe-section] .home-career__copy {
+    transform: none;
+    opacity: 1;
+  }
+}

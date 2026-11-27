@@ -1,0 +1,10 @@
+.home-contact__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.home-contact .pe-lead {
+  margin-top: var(--space-4);
+}

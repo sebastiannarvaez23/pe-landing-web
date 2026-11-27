@@ -1,0 +1,27 @@
+---
+import ToStart from '../../../../core/components/to-start/to-start.component.astro';
+import SiteLayout from '../../../../core/components/site-layout/site-layout.component.astro';
+import { findRoute } from '../../../../app-routing';
+import { jsonLdGraph, organizationNode, websiteNode } from '../../../../core/utils/structured-data.util';
+import SectionMark from '../../../../core/section-scroll/section-mark.component.astro';
+import HomeAcademic from '../../components/home-academic/home-academic.component.astro';
+import HomeExperience from '../../components/home-experience/home-experience.component.astro';
+import HomeHero from '../../components/home-hero/home-hero.component.astro';
+import HomeCareer from '../../components/home-career/home-career.component.astro';
+import HomePortfolio from '../../components/home-portfolio/home-portfolio.component.astro';
+
+const route = findRoute('/');
+const jsonLd = [jsonLdGraph([organizationNode(), websiteNode()])];
+---
+
+<SiteLayout title={route.title} description={route.description} path={route.path} jsonLd={jsonLd}>
+  <div class="pe-story" data-pe-story>
+    <SectionMark />
+    <HomeHero />
+    <HomeAcademic />
+    <HomeExperience />
+    <HomePortfolio />
+    <HomeCareer />
+  </div>
+  <ToStart />
+</SiteLayout>

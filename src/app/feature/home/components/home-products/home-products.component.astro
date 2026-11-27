@@ -1,0 +1,13 @@
+---
+import { withBase } from '../../../../core/utils/public-url.util';
+import './styles/home-products.component.web.css';
+---
+
+<section class="pe-section home-band--paper" id="productos" aria-labelledby="home-products-title">
+  <div class="pe-container">
+    <p class="pe-kicker">Productos</p>
+    <h2 id="home-products-title">Productos</h2>
+    <p class="pe-lead">Productos y plataformas, cuando haya algo concreto que mostrar.</p>
+    <p><a class="pe-text-link" href={withBase('/productos')}>Ver productos</a></p>
+  </div>
+</section>

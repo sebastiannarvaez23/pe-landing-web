@@ -1,0 +1,45 @@
+---
+import { findRoute, visibleCrumbs } from '../../../../app-routing';
+import PageIntro from '../../../../core/components/page-intro/page-intro.component.astro';
+import SiteLayout from '../../../../core/components/site-layout/site-layout.component.astro';
+import { pageGraph } from '../../../../core/utils/page-meta.util';
+import { itemListNode } from '../../../../core/utils/structured-data.util';
+import { PRODUCTS } from '../../data/products.data';
+
+const route = findRoute('/productos');
+const jsonLd = [
+  pageGraph(
+    route.path,
+    PRODUCTS.length > 0
+      ? [itemListNode('Productos', PRODUCTS.map((item) => ({ name: item.crumb, path: item.path })))]
+      : [],
+  ),
+];
+---
+
+<SiteLayout title={route.title} description={route.description} path={route.path} jsonLd={jsonLd}>
+  <PageIntro
+    title="Productos"
+    lead="Productos y plataformas que merezcan contarse con un resultado claro. Esta sección se publica cuando haya algo listo para mostrar."
+    crumbs={visibleCrumbs(route.path)}
+    kicker="Productos"
+  />
+  <div class="pe-container editorial">
+    {
+      PRODUCTS.length === 0 ? (
+        <p>Todavía no hay productos publicados.</p>
+      ) : (
+        <ul class="block-list">
+          {PRODUCTS.map((product) => (
+            <li>
+              <h2>
+                <a href={product.path}>{product.crumb}</a>
+              </h2>
+              <p>{product.lead}</p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</SiteLayout>

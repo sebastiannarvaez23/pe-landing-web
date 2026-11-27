@@ -1,0 +1,7 @@
+/* Overrides puntuales de tablet horizontal. El look de escritorio se mantiene. */
+@media (min-width: 768px) and (max-width: 1023.98px) and (orientation: landscape) and (min-height: 501px) {
+  :root {
+    --pe-gutter: 20px;
+    --space-9: 80px;
+  }
+}

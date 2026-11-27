@@ -1,0 +1,87 @@
+---
+import './styles/home-hero.component.web.css';
+import './styles/home-hero.component.mobile.css';
+import { MESSAGES } from '../../../../core/i18n/messages';
+import { withBase } from '../../../../core/utils/public-url.util';
+
+const copy = MESSAGES.es;
+---
+
+<section
+  class="pe-screen home-hero"
+  id="inicio"
+  data-pe-section
+  data-pe-side="end"
+  data-pe-shape="crystal"
+  aria-labelledby="hero-title"
+>
+  <div class="home-hero__glow" aria-hidden="true"></div>
+  <div class="pe-screen__grid pe-container home-hero__grid">
+    <div class="home-hero__copy">
+      <div class="home-hero__intro">
+        <h1 id="hero-title">
+          <span data-i18n="hero.line1">{copy['hero.line1']}</span>
+          <span class="home-hero__accent" data-i18n="hero.accent">{copy['hero.accent']}</span>
+          <span class="home-hero__accent" data-i18n="hero.line3">{copy['hero.line3']}</span>
+        </h1>
+        <span class="home-hero__rule" aria-hidden="true"></span>
+        <p class="home-hero__lead" data-i18n="hero.lead">{copy['hero.lead']}</p>
+        <p class="home-hero__meta" data-i18n="hero.meta">{copy['hero.meta']}</p>
+      </div>
+      <div class="home-hero__actions">
+        <a
+          class="home-hero__cta"
+          href="https://wa.me/573106418293"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n-aria="hero.ctaAria"
+          aria-label={copy['hero.ctaAria']}
+        >
+          <span data-i18n="hero.cta">{copy['hero.cta']}</span>
+          <svg class="home-hero__cta-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+        <p class="home-hero__note">
+          <svg class="home-hero__note-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 16.5 4 20l4.2-1.4A8 8 0 1 0 6 16.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path>
+          </svg>
+          <span data-i18n="hero.note">{copy['hero.note']}</span>
+        </p>
+      </div>
+    </div>
+    <div class="pe-screen__anchor home-hero__media" data-pe-anchor>
+      <img
+        src={withBase('/assets/professional-photo.png')}
+        width="1165"
+        height="1239"
+        data-i18n-alt="hero.photoAlt"
+        alt={copy['hero.photoAlt']}
+      />
+    </div>
+    <ul class="home-hero__pillars">
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="9" y="9" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+          <rect x="13" y="13" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+          <path d="M13 9V6M16 9V6M19 9V6M13 26v-3M16 26v-3M19 26v-3M9 13H6M9 16H6M9 19H6M26 13h-3M26 16h-3M26 19h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+        <span data-i18n="hero.pillar1">{copy['hero.pillar1']}</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M16 26V15.5M16 15.5c.2-2.8 2.2-5 4.8-5 .4 2.6.8 4.2 1.2 6 1.8.2 3.5 1.8 3.5 4.2 0 2.6-2 4.3-4.4 4.3H16M16 15.5c-.2-2.8-2.2-5-4.8-5-.4 2.6-.8 4.2-1.2 6-1.8.2-3.5 1.8-3.5 4.2 0 2.6 2 4.3 4.4 4.3H16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span data-i18n="hero.pillar2">{copy['hero.pillar2']}</span>
+      </li>
+      <li>
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M7 25h18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+          <path d="M9 20v5M14 15v10M19 17v8M24 11v14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path>
+          <path d="M9 16.5 14 12l5 3 6-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span data-i18n="hero.pillar3">{copy['hero.pillar3']}</span>
+      </li>
+    </ul>
+  </div>
+</section>
